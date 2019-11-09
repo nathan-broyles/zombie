@@ -1,0 +1,21 @@
+h1 {
+    font-family: Georgia;
+    color:red;
+    text-align: center;
+}
+#zombie {
+    width:250px;
+    height:250px;
+    position: absolute;
+}
+button {
+    top:95%;
+    left:50%;
+    position:absolute;
+}
+body {
+    background-image: url("../content/trees.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}

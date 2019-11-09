@@ -3,43 +3,60 @@ Author: Nathan Broyles A01082293
 -->
 
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<style>
-</style>
-
 <body>
+    <h1>Zombie Hunter</h1>
 
+    <h1 id='score'>Score: 0</h1>
 
-<img id = "me" src="content/zombie.gif" alt="zombie1" width = "250px" height = "250px"> 
+    <button type='button' onclick="resetGame()">Reset Game</button>
+
+    <img id = "zombie" src="content/zombie.gif" alt="zombie1"> 
+
+    <audio id='deathsound'>
+        <source src="content/deathsound.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        let zombie = document.getElementById('me');
-        zombie.style.position = 'absolute';
-        let myLeft = Math.random() * (window.innerWidth - 250);
-        let myTop = Math.random() * (window.innerHeight - 250);
+        let score = 0;
+        let zombie = document.getElementById('zombie');
         let zombieAlive = true;
 
-
-        function moveHandler(){
-            myLeft = Math.random() * (window.innerWidth - 250);
-            myTop = Math.random() * (window.innerHeight - 250);
+        function moveZombie(){
+            let myLeft = Math.random() * (window.innerWidth - 250);
+            let myTop = Math.random() * (window.innerHeight - 250);
             zombie.style.left = myLeft + 'px';
             zombie.style.top = myTop + 'px';
         }
 
-        function clickHandler(){
+        function clickZombie(){
             clearInterval(zombieInterval);
             zombie.src="content/blood.gif";
-            setTimeout (function(){zombie.src="zombie.gif"; moveHandler(); zombieInterval = setInterval(moveHandler, 2000);}, 3000)
+            let sound = document.getElementById('deathsound');
+            sound.play();
+            scoreUp();
+            setTimeout (function(){zombie.src="content/zombie.gif"; moveZombie(); zombieInterval = setInterval(moveZombie, 2000);}, 1000)
         }
         
-        
-        zombieInterval = setInterval(moveHandler, 2000);
-        zombie.onclick = clickHandler;
+        function scoreUp(){
+            score += 1;
+            let scoreboard = document.getElementById('score');
+            scoreboard.innerHTML = "Score: " + score;
+        }
+
+        function resetGame(){
+            score = 0;
+            let scoreboard = document.getElementById('score');
+            scoreboard.innerHTML = "Score: " + score;
+            clearInterval(zombieInterval);
+        }
+        zombieInterval = setInterval(moveZombie, 2000);
+        zombie.onclick = clickZombie;
         
     </script>
 
