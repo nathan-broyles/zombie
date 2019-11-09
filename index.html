@@ -34,15 +34,23 @@ Author: Nathan Broyles A01082293
             zombie.style.top = myTop + 'px';
         }
 
-        function clickZombie(){
+        function killZombie(){
+            zombie.onclick = null;
             clearInterval(zombieInterval);
             zombie.src="images/blood.gif";
             let sound = document.getElementById('deathsound');
             sound.play();
             scoreUp();
-            setTimeout (function(){zombie.src="images/zombie.gif"; moveZombie(); zombieInterval = setInterval(moveZombie, 2000);}, 1000)
+            setTimeout (reviveZombie, 1000)
         }
         
+        function reviveZombie(){
+            zombie.onclick = killZombie;
+            zombie.src="images/zombie.gif";
+            moveZombie(); 
+            zombieInterval = setInterval(moveZombie, 2000);
+        }
+
         function scoreUp(){
             score += 1;
             let scoreboard = document.getElementById('score');
@@ -58,7 +66,7 @@ Author: Nathan Broyles A01082293
             zombie.style.top = '40%';
         }
         zombieInterval = setInterval(moveZombie, 2000);
-        zombie.onclick = clickZombie;
+        zombie.onclick = killZombie;
         
     </script>
 
