@@ -16,10 +16,10 @@ Author: Nathan Broyles A01082293
 
     <button type='button' onclick="resetGame()">Reset Game</button>
 
-    <img id = "zombie" src="content/zombie.gif" alt="zombie1"> 
+    <img id = "zombie" src="images/zombie.gif" alt="zombie1"> 
 
     <audio id='deathsound'>
-        <source src="content/deathsound.mp3" type="audio/mpeg">
+        <source src="src/deathsound.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -36,11 +36,11 @@ Author: Nathan Broyles A01082293
 
         function clickZombie(){
             clearInterval(zombieInterval);
-            zombie.src="content/blood.gif";
+            zombie.src="images/blood.gif";
             let sound = document.getElementById('deathsound');
             sound.play();
             scoreUp();
-            setTimeout (function(){zombie.src="content/zombie.gif"; moveZombie(); zombieInterval = setInterval(moveZombie, 2000);}, 1000)
+            setTimeout (function(){zombie.src="images/zombie.gif"; moveZombie(); zombieInterval = setInterval(moveZombie, 2000);}, 1000)
         }
         
         function scoreUp(){
@@ -54,6 +54,8 @@ Author: Nathan Broyles A01082293
             let scoreboard = document.getElementById('score');
             scoreboard.innerHTML = "Score: " + score;
             clearInterval(zombieInterval);
+            zombie.style.left = '45%';
+            zombie.style.top = '40%';
         }
         zombieInterval = setInterval(moveZombie, 2000);
         zombie.onclick = clickZombie;

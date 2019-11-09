@@ -7,6 +7,8 @@ h1 {
     width:250px;
     height:250px;
     position: absolute;
+    top:40%;
+    left:45%;
 }
 button {
     top:95%;
@@ -14,7 +16,7 @@ button {
     position:absolute;
 }
 body {
-    background-image: url("../content/trees.jpg");
+    background-image: url("../images/trees.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
