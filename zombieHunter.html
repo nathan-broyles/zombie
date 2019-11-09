@@ -1,0 +1,48 @@
+<!--
+Author: Nathan Broyles A01082293
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<style>
+</style>
+
+<body>
+
+
+<img id = "me" src="zombie.gif" alt="zombie1" width = "250px" height = "250px"> 
+
+    <script>
+        let zombie = document.getElementById('me');
+        zombie.style.position = 'absolute';
+        let myLeft = Math.random() * (window.innerWidth - 250);
+        let myTop = Math.random() * (window.innerHeight - 250);
+        let zombieAlive = true;
+
+
+        function moveHandler(){
+            myLeft = Math.random() * (window.innerWidth - 250);
+            myTop = Math.random() * (window.innerHeight - 250);
+            zombie.style.left = myLeft + 'px';
+            zombie.style.top = myTop + 'px';
+        }
+
+        function clickHandler(){
+            clearInterval(zombieInterval);
+            zombie.src="blood.gif";
+            setTimeout (function(){zombie.src="zombie.gif"; moveHandler(); zombieInterval = setInterval(moveHandler, 2000);}, 3000)
+        }
+        
+        
+        zombieInterval = setInterval(moveHandler, 2000);
+        zombie.onclick = clickHandler;
+        
+    </script>
+
+</body>
+
+</html>
